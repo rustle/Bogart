@@ -1,21 +1,21 @@
 //
-//  Trie.m
+//  BGRTTrie.m
 //  Bogart
 //
 //  Created by Doug Russell on 3/5/13.
 //  Copyright (c) 2013 RSTL. All rights reserved.
 //
 
-#import "Trie.h"
+#import "BGRTTrie.h"
 
-@implementation Trie
+@implementation BGRTTrie
 
 + (instancetype)makeMap:(void *)dummy, ...
 {
 	va_list ap;
 	char *key;
 	char *value;
-	Trie *newMap = [Trie new];
+	BGRTTrie *newMap = [BGRTTrie new];
 
 	va_start(ap, dummy);
 	while ((key = va_arg(ap, char *)) && (value = va_arg(ap, char *)))
@@ -44,7 +44,7 @@
 - (void)addData:(char *)data length:(int)length value:(char *)value
 {
 	// look for the child
-	Trie *child = self.children;
+	BGRTTrie *child = self.children;
 	while (child)
 	{
 		if (child.state == *data)
@@ -57,7 +57,7 @@
 	// if the child doesn't exist add it
 	if (!child)
 	{
-		child = [[Trie alloc] initWithState:*data];
+		child = [[BGRTTrie alloc] initWithState:*data];
 		child.sibling = self.children;
 		self.children = child;
 	}
@@ -75,7 +75,7 @@
 
 - (char *)getData:(char *)data length:(int)length
 {
-	Trie *child = self;
+	BGRTTrie *child = self;
 
 	// look for the child
 	while (length > 0)

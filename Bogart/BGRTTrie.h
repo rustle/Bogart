@@ -1,5 +1,5 @@
 //
-//  Trie.h
+//  BGRTTrie.h
 //  Bogart
 //
 //  Created by Doug Russell on 3/5/13.
@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Trie : NSObject
+@interface BGRTTrie : NSObject
 
 @property (nonatomic) char state;
 @property (nonatomic) char *value;
-@property (nonatomic) Trie *sibling;
-@property (nonatomic) Trie *children;
+@property (nonatomic) BGRTTrie *sibling;
+@property (nonatomic) BGRTTrie *children;
 
 + (instancetype)makeMap:(void *)dummy, ...;
 - (void)addData:(char *)data length:(int)length value:(char *)value;

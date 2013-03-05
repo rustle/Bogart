@@ -1,20 +1,20 @@
 //
-//  Route.h
+//  BGRTRoute.h
 //  Bogart
 //	
 
 #import <Foundation/Foundation.h>
-#import "Request.h"
-#import "Response.h"
+#import "BGRTRequest.h"
+#import "BGRTResponse.h"
 #include <evhttp.h>
 
-typedef void (^Handler)(Request *, Response *);
+typedef void (^Handler)(BGRTRequest *, BGRTResponse *);
 
-@interface Route : NSObject
+@interface BGRTRoute : NSObject
 
 @property (nonatomic) enum evhttp_cmd_type type;
 @property (nonatomic) const char *pattern;
 @property (copy, nonatomic) Handler handler;
-@property (strong, nonatomic) Route *next;
+@property (strong, nonatomic) BGRTRoute *next;
 
 @end

@@ -5,10 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Request.h"
-#import "Response.h"
-#import "Route.h"
-#import "Trie.h"
+#import "BGRTRequest.h"
+#import "BGRTResponse.h"
+#import "BGRTRoute.h"
+#import "BGRTTrie.h"
 
 #import <evhttp.h>
 #import <hiredis/hiredis.h>
@@ -47,27 +47,27 @@ int main(int argc, const char * argv[]) \
 	redisFree(_redisContext)
 
 #define map(...) \
-	[Trie makeMap:NULL, __VA_ARGS__, NULL]
+	[BGRTTrie makeMap:NULL, __VA_ARGS__, NULL]
 
 #define render(_template, _map) \
-	[bogart renderText:response template:_template args:_map]
+	[bogart renderText:response renderTemplate:_template args:_map]
 
 @interface BogartServer : NSObject
 
 - (void)startBogart:(uint16_t)port;
-- (Route *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type;
-- (void)renderText:(Response *)response template:(char *)template args:(Trie *)args;
+- (BGRTRoute *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type;
+- (void)renderText:(BGRTResponse *)response renderTemplate:(char *)renderTemplate args:(BGRTTrie *)args;
 
 @end
 
 @interface BogartServer ()
 
 #define get(_pattern) \
-	[bogart get:_pattern].handler = ^ void (Request * request, Response * response) 
-- (Route *)get:(const char *)pattern;
+	[bogart get:_pattern].handler = ^ void (BGRTRequest * request, BGRTResponse * response) 
+- (BGRTRoute *)get:(const char *)pattern;
 
 #define post(_pattern) \
-	[bogart post:_pattern].handler = ^ void (Request * request, Response * response) 
-- (Route *)post:(const char *)pattern;
+	[bogart post:_pattern].handler = ^ void (BGRTRequest * request, BGRTResponse * response) 
+- (BGRTRoute *)post:(const char *)pattern;
 
 @end

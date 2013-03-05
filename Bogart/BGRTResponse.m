@@ -1,16 +1,16 @@
 //
-//  Response.m
+//  BGRTResponse.m
 //  Bogart
 //	
 
-#import "Response.h"
+#import "BGRTResponse.h"
 #import <event.h>
 
-@interface Response ()
+@interface BGRTResponse ()
 @property (nonatomic) struct evbuffer *buffer;
 @end
 
-@implementation Response
+@implementation BGRTResponse
 
 - (instancetype)init
 {

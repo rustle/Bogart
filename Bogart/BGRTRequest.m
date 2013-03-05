@@ -1,21 +1,21 @@
 //
-//  Request.m
+//  BGRTRequest.m
 //  Bogart
 //	
 
-#import "Request.h"
+#import "BGRTRequest.h"
 #include <evhttp.h>
 
-@interface Request ()
+@interface BGRTRequest ()
 @property (nonatomic) const char *uri;
 @property (nonatomic) struct evkeyvalq *params;
 @property (nonatomic) struct evhttp_request *ev_req;
 @property (nonatomic) NSDictionary *postParameters;
 @end
 
-@implementation Request
+@implementation BGRTRequest
 
-- (instancetype)initWithRequest:(struct evhttp_request *)ev_req
+- (instancetype)initWithBGRTRequest:(struct evhttp_request *)ev_req
 {
 	self = [super init];
 	if (self)
@@ -57,13 +57,13 @@
 	free(_params);
 }
 
-- (const char *)getParamWithKey:(const char *)key
+- (BGRTParameter)getParamWithKey:(const char *)key
 {
 	NSParameterAssert(self.params);
 	return evhttp_find_header(self.params, key);
 }
 
-- (const char *)getPostParamWithKey:(const char *)key
+- (BGRTParameter)getPostParamWithKey:(const char *)key
 {
 	NSString *keyString = [NSString stringWithCString:key encoding:NSUTF8StringEncoding];
 	if (keyString)

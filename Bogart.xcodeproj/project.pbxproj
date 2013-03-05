@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9190653D16E67E970039BC21 /* libhiredis.0.10.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */; };
-		9190654016E68F370039BC21 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190653F16E68F370039BC21 /* Trie.m */; };
+		9190654316E699A00039BC21 /* BGRTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654216E699A00039BC21 /* BGRTRequest.m */; };
+		9190654616E699ED0039BC21 /* BGRTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654516E699ED0039BC21 /* BGRTResponse.m */; };
+		9190654916E69A410039BC21 /* BGRTRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654816E69A410039BC21 /* BGRTRoute.m */; };
+		9190654C16E69A480039BC21 /* BGRTTrie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654B16E69A480039BC21 /* BGRTTrie.m */; };
 		91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E8078C16E5C56C00732D39 /* Foundation.framework */; };
 		91E8079016E5C56C00732D39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8078F16E5C56C00732D39 /* main.m */; };
 		91E8079416E5C56C00732D39 /* Bogart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91E8079316E5C56C00732D39 /* Bogart.1 */; };
 		91E8079F16E5C5AE00732D39 /* Bogart.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8079E16E5C5AE00732D39 /* Bogart.m */; };
-		91E807A216E5C5D700732D39 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E807A116E5C5D700732D39 /* Request.m */; };
-		91E807A516E5C63900732D39 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E807A416E5C63900732D39 /* Response.m */; };
-		91E807A816E5C66E00732D39 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E807A716E5C66E00732D39 /* Route.m */; };
 		91E807AD16E5C8A500732D39 /* libevent-2.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */; };
 /* End PBXBuildFile section */
 
@@ -34,21 +34,21 @@
 
 /* Begin PBXFileReference section */
 		9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libhiredis.0.10.dylib; path = /usr/local/Cellar/hiredis/0.11.0/lib/libhiredis.0.10.dylib; sourceTree = "<absolute>"; };
-		9190653E16E68F370039BC21 /* Trie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trie.h; sourceTree = "<group>"; };
-		9190653F16E68F370039BC21 /* Trie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trie.m; sourceTree = "<group>"; };
+		9190654116E699A00039BC21 /* BGRTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTRequest.h; sourceTree = "<group>"; };
+		9190654216E699A00039BC21 /* BGRTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTRequest.m; sourceTree = "<group>"; };
+		9190654416E699ED0039BC21 /* BGRTResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTResponse.h; sourceTree = "<group>"; };
+		9190654516E699ED0039BC21 /* BGRTResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTResponse.m; sourceTree = "<group>"; };
+		9190654716E69A410039BC21 /* BGRTRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTRoute.h; sourceTree = "<group>"; };
+		9190654816E69A410039BC21 /* BGRTRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTRoute.m; sourceTree = "<group>"; };
+		9190654A16E69A480039BC21 /* BGRTTrie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTTrie.h; sourceTree = "<group>"; };
+		9190654B16E69A480039BC21 /* BGRTTrie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTTrie.m; sourceTree = "<group>"; };
 		91E8078916E5C56C00732D39 /* Bogart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bogart; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E8078C16E5C56C00732D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91E8078F16E5C56C00732D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		91E8079216E5C56C00732D39 /* Bogart-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bogart-Prefix.pch"; sourceTree = "<group>"; };
 		91E8079316E5C56C00732D39 /* Bogart.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Bogart.1; sourceTree = "<group>"; };
-		91E8079D16E5C5AE00732D39 /* Bogart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bogart.h; sourceTree = "<group>"; };
-		91E8079E16E5C5AE00732D39 /* Bogart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bogart.m; sourceTree = "<group>"; };
-		91E807A016E5C5D700732D39 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
-		91E807A116E5C5D700732D39 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
-		91E807A316E5C63900732D39 /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
-		91E807A416E5C63900732D39 /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
-		91E807A616E5C66E00732D39 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
-		91E807A716E5C66E00732D39 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		91E8079D16E5C5AE00732D39 /* Bogart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Bogart.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		91E8079E16E5C5AE00732D39 /* Bogart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Bogart.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libevent-2.0.5.dylib"; path = "/usr/local/Cellar/libevent/2.0.20/lib/libevent-2.0.5.dylib"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -99,14 +99,14 @@
 				91E8078F16E5C56C00732D39 /* main.m */,
 				91E8079D16E5C5AE00732D39 /* Bogart.h */,
 				91E8079E16E5C5AE00732D39 /* Bogart.m */,
-				91E807A016E5C5D700732D39 /* Request.h */,
-				91E807A116E5C5D700732D39 /* Request.m */,
-				91E807A316E5C63900732D39 /* Response.h */,
-				91E807A416E5C63900732D39 /* Response.m */,
-				91E807A616E5C66E00732D39 /* Route.h */,
-				91E807A716E5C66E00732D39 /* Route.m */,
-				9190653E16E68F370039BC21 /* Trie.h */,
-				9190653F16E68F370039BC21 /* Trie.m */,
+				9190654116E699A00039BC21 /* BGRTRequest.h */,
+				9190654216E699A00039BC21 /* BGRTRequest.m */,
+				9190654416E699ED0039BC21 /* BGRTResponse.h */,
+				9190654516E699ED0039BC21 /* BGRTResponse.m */,
+				9190654716E69A410039BC21 /* BGRTRoute.h */,
+				9190654816E69A410039BC21 /* BGRTRoute.m */,
+				9190654A16E69A480039BC21 /* BGRTTrie.h */,
+				9190654B16E69A480039BC21 /* BGRTTrie.m */,
 				91E8079316E5C56C00732D39 /* Bogart.1 */,
 				91E8079116E5C56C00732D39 /* Supporting Files */,
 			);
@@ -174,10 +174,10 @@
 			files = (
 				91E8079016E5C56C00732D39 /* main.m in Sources */,
 				91E8079F16E5C5AE00732D39 /* Bogart.m in Sources */,
-				91E807A216E5C5D700732D39 /* Request.m in Sources */,
-				91E807A516E5C63900732D39 /* Response.m in Sources */,
-				91E807A816E5C66E00732D39 /* Route.m in Sources */,
-				9190654016E68F370039BC21 /* Trie.m in Sources */,
+				9190654316E699A00039BC21 /* BGRTRequest.m in Sources */,
+				9190654616E699ED0039BC21 /* BGRTResponse.m in Sources */,
+				9190654916E69A410039BC21 /* BGRTRoute.m in Sources */,
+				9190654C16E69A480039BC21 /* BGRTTrie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 Bogart {
 	get("/get") {
-		const char * foo = param("foo");
+		BGRTParameter foo = param("foo");
 		if (foo)
 		{
 			body("<h1>Get with parameter: </h1><p>%s</p>\n", foo);
@@ -19,7 +19,7 @@ Bogart {
 		}
 	};
 	post("/post") {
-		const char * foo = postParam("foo");
+		BGRTParameter foo = postParam("foo");
 		if (foo)
 		{
 			body("Post with parameter: %s\n", foo);

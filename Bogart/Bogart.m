@@ -10,11 +10,11 @@
 @property (nonatomic) uint16_t port;
 @property (copy, nonatomic) void (^init_func)(void);
 @property (copy, nonatomic) Handler not_found;
-@property (strong, nonatomic) Route *route;
-- (Route *)matchRoute:(Route *)route request:(Request *)request;
+@property (strong, nonatomic) BGRTRoute *route;
+- (BGRTRoute *)matchRoute:(BGRTRoute *)route request:(BGRTRequest *)request;
 @end
 
-#define BOGART_NOT_FOUND_DEFAULT ^ void (Request * request, Response * response) { status(404); body("404 Not Found\n"); }
+#define BOGART_NOT_FOUND_DEFAULT ^ void (BGRTRequest * request, BGRTResponse * response) { status(404); body("404 Not Found\n"); }
 
 void request_handler(struct evhttp_request *ev_req, void *context)
 {
@@ -24,10 +24,10 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 
 	gettimeofday(&t0, NULL);
 
-	Request *request = [[Request alloc] initWithRequest:ev_req];
-	Response *response = [Response new];
+	BGRTRequest *request = [[BGRTRequest alloc] initWithBGRTRequest:ev_req];
+	BGRTResponse *response = [BGRTResponse new];
 
-	Route *matched_route = [bogart matchRoute:bogart.route request:request];
+	BGRTRoute *matched_route = [bogart matchRoute:bogart.route request:request];
 
 	if (matched_route)
 	{
@@ -42,7 +42,7 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 
 	gettimeofday(&t1, NULL);
 	timersub(&t1, &t0, &tr);
-	printf("Request processed in: %ld secs, %d usecs\n", tr.tv_sec, tr.tv_usec);
+	printf("BGRTRequest processed in: %ld secs, %d usecs\n", tr.tv_sec, tr.tv_usec);
 }
 
 @implementation BogartServer
@@ -71,14 +71,14 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	evhttp_free(http);
 }
 
-- (Route *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type
+- (BGRTRoute *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type
 {
-	Route *new_route = [Route new];
+	BGRTRoute *new_route = [BGRTRoute new];
 	new_route.pattern = pattern;
 	new_route.type = type;
 	if (self.route)
 	{
-		Route *cursor = self.route;
+		BGRTRoute *cursor = self.route;
 		while (cursor.next)
 		{
 			cursor = cursor.next;
@@ -120,7 +120,7 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	return (!*pattern && !*uri) || (!*pattern && *uri);
 }
 
-- (Route *)matchRoute:(Route *)route request:(Request *)request
+- (BGRTRoute *)matchRoute:(BGRTRoute *)route request:(BGRTRequest *)request
 {
 	while(route) 
 	{
@@ -133,31 +133,31 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	return NULL;
 }
 
-- (Route *)get:(const char *)pattern
+- (BGRTRoute *)get:(const char *)pattern
 {
 	return [self nextRoute:pattern type:EVHTTP_REQ_GET];
 }
 
-- (Route *)post:(const char *)pattern
+- (BGRTRoute *)post:(const char *)pattern
 {
 	return [self nextRoute:pattern type:EVHTTP_REQ_POST];
 }
 
-- (void)renderText:(Response *)response template:(char *)template args:(Trie *)args
+- (void)renderText:(BGRTResponse *)response renderTemplate:(char *)renderTemplate args:(BGRTTrie *)args
 {
 	char anchor[] = "%{";
 	char * cursor;
 	char * val;
-	while((cursor = strstr(template, anchor))) 
+	while((cursor = strstr(renderTemplate, anchor))) 
 	{
-		evbuffer_add(response.buffer, template, cursor - template);
-		template = cursor + sizeof(anchor) - 1;
-		cursor = strchr(template, '}');
-		val = [args getData:template length:(int)(cursor-template)];
+		evbuffer_add(response.buffer, renderTemplate, cursor-renderTemplate);
+		renderTemplate = cursor + sizeof(anchor) - 1;
+		cursor = strchr(renderTemplate, '}');
+		val = [args getData:renderTemplate length:(int)(cursor-renderTemplate)];
 		evbuffer_add(response.buffer, val, strlen(val));
-		template = cursor + 1;
+		renderTemplate = cursor + 1;
 	}
-	evbuffer_add(response.buffer, template, strlen(template));
+	evbuffer_add(response.buffer, renderTemplate, strlen(renderTemplate));
 }
 
 @end
