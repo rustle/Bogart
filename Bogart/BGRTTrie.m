@@ -22,6 +22,7 @@
 	{
 		[newMap addData:key length:(int)strlen(key) value:value];
 	}
+	va_end(ap);
 
 	return newMap;
 }
