@@ -31,7 +31,7 @@ Bogart {
 		}
 	};
 	get("/render") {
-		const char * foo = param("foo");
+		BGRTParameter foo = param("foo");
 		if (foo)
 		{
 			render("Testing rendering %{input}\n", map("input", foo));
