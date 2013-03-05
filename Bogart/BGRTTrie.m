@@ -1,10 +1,7 @@
 //
 //  BGRTTrie.m
 //  Bogart
-//
-//  Created by Doug Russell on 3/5/13.
-//  Copyright (c) 2013 RSTL. All rights reserved.
-//
+//	
 
 #import "BGRTTrie.h"
 
