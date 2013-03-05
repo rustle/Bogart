@@ -4,9 +4,12 @@
 //	
 
 #import <Foundation/Foundation.h>
+
 #import "Request.h"
 #import "Response.h"
 #import "Route.h"
+#import "Trie.h"
+
 #import <evhttp.h>
 #import <hiredis/hiredis.h>
 
@@ -19,7 +22,7 @@ int main(int argc, const char * argv[]) \
 
 #define start(port) \
 		[bogart startBogart:port]; \
-		cleanupRedis \
+		cleanupRedis; \
 	} \
 	} \
 	return 0;
@@ -34,19 +37,26 @@ int main(int argc, const char * argv[]) \
 	[request getPostParamWithKey:_key]
 
 #define status(_status) \
-	response.code = _status;
+	response.code = _status
 
 #define useRedis \
 	redisContext *_redisContext; \
-	_redisContext = redisConnect("127.0.0.1", 6379);
+	_redisContext = redisConnect("127.0.0.1", 6379)
 
 #define cleanupRedis \
-	redisFree(_redisContext);
+	redisFree(_redisContext)
+
+#define map(...) \
+	[Trie makeMap:NULL, __VA_ARGS__, NULL]
+
+#define render(_template, _map) \
+	[bogart renderText:response template:_template args:_map]
 
 @interface BogartServer : NSObject
 
 - (void)startBogart:(uint16_t)port;
 - (Route *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type;
+- (void)renderText:(Response *)response template:(char *)template args:(Trie *)args;
 
 @end
 

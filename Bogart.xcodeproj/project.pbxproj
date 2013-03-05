@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9190653D16E67E970039BC21 /* libhiredis.0.10.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */; };
+		9190654016E68F370039BC21 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190653F16E68F370039BC21 /* Trie.m */; };
 		91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E8078C16E5C56C00732D39 /* Foundation.framework */; };
 		91E8079016E5C56C00732D39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8078F16E5C56C00732D39 /* main.m */; };
 		91E8079416E5C56C00732D39 /* Bogart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91E8079316E5C56C00732D39 /* Bogart.1 */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libhiredis.0.10.dylib; path = /usr/local/Cellar/hiredis/0.11.0/lib/libhiredis.0.10.dylib; sourceTree = "<absolute>"; };
+		9190653E16E68F370039BC21 /* Trie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trie.h; sourceTree = "<group>"; };
+		9190653F16E68F370039BC21 /* Trie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trie.m; sourceTree = "<group>"; };
 		91E8078916E5C56C00732D39 /* Bogart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bogart; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E8078C16E5C56C00732D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91E8078F16E5C56C00732D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 				91E807A416E5C63900732D39 /* Response.m */,
 				91E807A616E5C66E00732D39 /* Route.h */,
 				91E807A716E5C66E00732D39 /* Route.m */,
+				9190653E16E68F370039BC21 /* Trie.h */,
+				9190653F16E68F370039BC21 /* Trie.m */,
 				91E8079316E5C56C00732D39 /* Bogart.1 */,
 				91E8079116E5C56C00732D39 /* Supporting Files */,
 			);
@@ -172,6 +177,7 @@
 				91E807A216E5C5D700732D39 /* Request.m in Sources */,
 				91E807A516E5C63900732D39 /* Response.m in Sources */,
 				91E807A816E5C66E00732D39 /* Route.m in Sources */,
+				9190654016E68F370039BC21 /* Trie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

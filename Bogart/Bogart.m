@@ -143,4 +143,21 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	return [self nextRoute:pattern type:EVHTTP_REQ_POST];
 }
 
+- (void)renderText:(Response *)response template:(char *)template args:(Trie *)args
+{
+	char anchor[] = "%{";
+	char * cursor;
+	char * val;
+	while((cursor = strstr(template, anchor))) 
+	{
+		evbuffer_add(response.buffer, template, cursor - template);
+		template = cursor + sizeof(anchor) - 1;
+		cursor = strchr(template, '}');
+		val = [args getData:template length:(int)(cursor-template)];
+		evbuffer_add(response.buffer, val, strlen(val));
+		template = cursor + 1;
+	}
+	evbuffer_add(response.buffer, template, strlen(template));
+}
+
 @end
