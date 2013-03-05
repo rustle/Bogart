@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9190653D16E67E970039BC21 /* libhiredis.0.10.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */; };
 		91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E8078C16E5C56C00732D39 /* Foundation.framework */; };
 		91E8079016E5C56C00732D39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8078F16E5C56C00732D39 /* main.m */; };
 		91E8079416E5C56C00732D39 /* Bogart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91E8079316E5C56C00732D39 /* Bogart.1 */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libhiredis.0.10.dylib; path = /usr/local/Cellar/hiredis/0.11.0/lib/libhiredis.0.10.dylib; sourceTree = "<absolute>"; };
 		91E8078916E5C56C00732D39 /* Bogart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bogart; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E8078C16E5C56C00732D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91E8078F16E5C56C00732D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9190653D16E67E970039BC21 /* libhiredis.0.10.dylib in Frameworks */,
 				91E807AD16E5C8A500732D39 /* libevent-2.0.5.dylib in Frameworks */,
 				91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */,
 			);
@@ -80,6 +83,7 @@
 		91E8078B16E5C56C00732D39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */,
 				91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */,
 				91E8078C16E5C56C00732D39 /* Foundation.framework */,
 			);
@@ -238,10 +242,14 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bogart/Bogart-Prefix.pch";
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/libevent/2.0.20/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/libevent/2.0.20/include,
+					/usr/local/Cellar/hiredis/0.11.0/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/libevent/2.0.20/lib,
+					/usr/local/Cellar/hiredis/0.11.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -252,10 +260,14 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bogart/Bogart-Prefix.pch";
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/libevent/2.0.20/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/libevent/2.0.20/include,
+					/usr/local/Cellar/hiredis/0.11.0/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/libevent/2.0.20/lib,
+					/usr/local/Cellar/hiredis/0.11.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -280,6 +292,7 @@
 				91E8079916E5C56C00732D39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

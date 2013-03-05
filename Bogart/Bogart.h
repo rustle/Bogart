@@ -8,15 +8,18 @@
 #import "Response.h"
 #import "Route.h"
 #import <evhttp.h>
+#import <hiredis/hiredis.h>
 
 #define Bogart \
 int main(int argc, const char * argv[]) \
 { \
 	@autoreleasepool { \
+		useRedis; \
 		BogartServer *bogart = [BogartServer new];
 
 #define start(port) \
 		[bogart startBogart:port]; \
+		cleanupRedis \
 	} \
 	} \
 	return 0;
@@ -32,6 +35,13 @@ int main(int argc, const char * argv[]) \
 
 #define status(_status) \
 	response.code = _status;
+
+#define useRedis \
+	redisContext *_redisContext; \
+	_redisContext = redisConnect("127.0.0.1", 6379);
+
+#define cleanupRedis \
+	redisFree(_redisContext);
 
 @interface BogartServer : NSObject
 
