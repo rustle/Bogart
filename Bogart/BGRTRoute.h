@@ -8,13 +8,13 @@
 #import "BGRTResponse.h"
 #include <evhttp.h>
 
-typedef void (^Handler)(BGRTRequest *, BGRTResponse *);
+typedef void (^RouteHandler)(BGRTRequest *, BGRTResponse *);
 
 @interface BGRTRoute : NSObject
 
 @property (nonatomic) enum evhttp_cmd_type type;
 @property (nonatomic) const char *pattern;
-@property (copy, nonatomic) Handler handler;
+@property (copy, nonatomic) RouteHandler handler;
 @property (strong, nonatomic) BGRTRoute *next;
 
 @end

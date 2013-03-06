@@ -53,11 +53,14 @@ int main(int argc, const char * argv[]) \
 #define render(_template, _map) \
 	[bogart renderText:response renderTemplate:_template args:_map]
 
+typedef void (^RedisHandler)(redisReply *);
+
 @interface BogartServer : NSObject
 
 - (void)startBogart:(uint16_t)port;
 - (BGRTRoute *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type;
 - (void)renderText:(BGRTResponse *)response renderTemplate:(char *)renderTemplate args:(BGRTTrie *)args;
+- (void)redisCommand:(redisContext *)context handler:(RedisHandler)handler format:(const char *)format, ...;
 
 @end
 

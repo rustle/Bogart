@@ -9,7 +9,7 @@
 @interface BogartServer ()
 @property (nonatomic) uint16_t port;
 @property (copy, nonatomic) void (^init_func)(void);
-@property (copy, nonatomic) Handler not_found;
+@property (copy, nonatomic) RouteHandler not_found;
 @property (strong, nonatomic) BGRTRoute *route;
 - (BGRTRoute *)matchRoute:(BGRTRoute *)route request:(BGRTRequest *)request;
 @end
@@ -158,6 +158,18 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 		renderTemplate = cursor + 1;
 	}
 	evbuffer_add(response.buffer, renderTemplate, strlen(renderTemplate));
+}
+
+- (void)redisCommand:(redisContext *)context handler:(RedisHandler)handler format:(const char *)format, ...
+{
+	NSParameterAssert(context);
+	NSParameterAssert(handler);
+	va_list ap;
+    va_start(ap, format);
+	redisReply *reply = redisvCommand(context, format, ap);
+	va_end(ap);
+	handler(reply);
+	freeReplyObject(reply);
 }
 
 @end

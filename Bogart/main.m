@@ -41,37 +41,50 @@ Bogart {
 			body("No input\n");
 		}
 	};
-	get("/create")
-	{
+	get("/create") {
 		BGRTParameter name = param("name");
 		BGRTParameter identifier =  param("id");
 		if (name && identifier)
 		{
-			redisReply *reply = redisCommand(_redisContext, "HSET User:%s %s %s", identifier, "name", name);
-			if (reply)
-			{
-				body("User created.\n");
-				status(201);
-			}
-			else
-			{
-				body("Error creating user: %s.\n", _redisContext->errstr);
-			}
-			freeReplyObject(reply);
+			[bogart redisCommand:_redisContext handler:^(redisReply *reply) {
+				if (reply)
+				{
+					body("User created.\n");
+					status(201);
+				}
+				else
+				{
+					body("Error creating user: %s.\n", _redisContext->errstr);
+				}
+			} format:"HSET User:%s %s %s", identifier, "name", name];
 		}
 		else
 		{
 			body("Invalid input.\n");
 		}
 	};
-	get("/show")
-	{
+	get("/show") {
 		BGRTParameter identifier =  param("id");
 		if (identifier)
 		{
-			redisReply *reply = redisCommand(_redisContext, "HGET User:%s %s", identifier, "name");
-			render("<name>%{name}</name>\n", map("name", reply->str));
-			freeReplyObject(reply);
+			[bogart redisCommand:_redisContext handler:^(redisReply *reply) {
+				if (reply && reply->type == REDIS_REPLY_STRING)
+				{
+					NSCParameterAssert(reply->str);
+					render("<name>%{name}</name>\n", map("name", reply->str));
+				}
+				else
+				{
+					if (reply->type == REDIS_REPLY_NIL)
+					{
+						body("No user exists with identifier %s.\n", identifier);
+					}
+					else
+					{
+						body("Error fetching user with identifier %s: %s.\n", identifier, _redisContext->errstr);
+					}
+				}
+			} format:"HGET User:%s %s", identifier, "name"];
 		}
 	};
 	start(10000);
