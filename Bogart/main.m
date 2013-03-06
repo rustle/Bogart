@@ -23,7 +23,6 @@ Bogart {
 		if (foo)
 		{
 			body("Post with parameter: %s\n", foo);
-			status(201);
 		}
 		else
 		{
@@ -34,7 +33,7 @@ Bogart {
 		BGRTParameter foo = param("foo");
 		if (foo)
 		{
-			render("Testing rendering %{input}\n", map("input", foo));
+			render("Testing rendering {{input}}\n", map("input", foo));
 		}
 		else
 		{
@@ -71,7 +70,7 @@ Bogart {
 				if (bgrtRedisReply && bgrtRedisReplyType == REDIS_REPLY_STRING)
 				{
 					NSCParameterAssert(bgrtRedisReplyString);
-					render("<name>%{name}</name>\n", map("name", bgrtRedisReplyString));
+					render("<name>{{name}}</name>\n", map("name", bgrtRedisReplyString));
 				}
 				else
 				{

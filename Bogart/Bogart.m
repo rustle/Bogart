@@ -5,6 +5,7 @@
 
 #import "Bogart.h"
 #include <evhttp.h>
+#import "GRMustache.h"
 
 @interface BogartServer ()
 @property (nonatomic) uint16_t port;
@@ -143,21 +144,11 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	return [self nextRoute:pattern type:EVHTTP_REQ_POST];
 }
 
-- (void)renderText:(BGRTResponse *)response renderTemplate:(char *)renderTemplate args:(BGRTTrie *)args
+- (void)renderText:(BGRTResponse *)response renderTemplate:(NSString *)renderTemplate args:(NSDictionary *)args
 {
-	char anchor[] = "%{";
-	char * cursor;
-	char * val;
-	while((cursor = strstr(renderTemplate, anchor))) 
-	{
-		evbuffer_add(response.buffer, renderTemplate, cursor-renderTemplate);
-		renderTemplate = cursor + sizeof(anchor) - 1;
-		cursor = strchr(renderTemplate, '}');
-		val = [args getData:renderTemplate length:(int)(cursor-renderTemplate)];
-		evbuffer_add(response.buffer, val, strlen(val));
-		renderTemplate = cursor + 1;
-	}
-	evbuffer_add(response.buffer, renderTemplate, strlen(renderTemplate));
+	NSString *templatedString = [GRMustacheTemplate renderObject:args fromString:renderTemplate error:nil];
+	const char *string = [templatedString UTF8String];
+	evbuffer_add(response.buffer, string, strlen(string));
 }
 
 - (void)redisCommand:(redisContext *)context handler:(RedisHandler)handler format:(const char *)format, ...
@@ -170,6 +161,48 @@ void request_handler(struct evhttp_request *ev_req, void *context)
 	va_end(ap);
 	handler(reply);
 	freeReplyObject(reply);
+}
+
+@end
+
+@implementation NSDictionary (BGRT)
+
++ (NSDictionary *)bgrtDictionaryWithCStrings:(char *)strings, ...
+{
+	va_list ap;
+	NSUInteger count;
+	
+	va_start(ap, strings);
+	count = 1;
+	while(va_arg(ap, char *) != nil)
+	{
+		count++;
+	}
+	va_end(ap);
+	
+	if ((count % 2) != 0)
+	{
+		@throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+		return nil;
+	}
+	
+	if (count < 2)
+	{
+		@throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+		return nil;
+	}
+	
+	va_start(ap, strings);
+	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:count/2];
+	dictionary[[NSString stringWithCString:strings encoding:NSUTF8StringEncoding]] = [NSString stringWithCString:va_arg(ap, char *) encoding:NSUTF8StringEncoding];
+	
+	for (NSUInteger i = 1; i < count/2; i++)
+	{
+		dictionary[[NSString stringWithCString:va_arg(ap, char *) encoding:NSUTF8StringEncoding]] = [NSString stringWithCString:va_arg(ap, char *) encoding:NSUTF8StringEncoding];
+	}
+	va_end(ap);
+	
+	return [dictionary copy];
 }
 
 @end

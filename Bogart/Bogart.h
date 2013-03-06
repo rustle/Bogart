@@ -8,7 +8,6 @@
 #import "BGRTRequest.h"
 #import "BGRTResponse.h"
 #import "BGRTRoute.h"
-#import "BGRTTrie.h"
 
 #import <evhttp.h>
 #import <hiredis/hiredis.h>
@@ -52,11 +51,11 @@ int main(int argc, const char * argv[]) \
 #define cleanupRedis \
 	redisFree(_redisContext)
 
-#define map(...) \
-	[BGRTTrie makeMap:NULL, __VA_ARGS__, NULL]
+#define map(args, ...) \
+	[NSDictionary bgrtDictionaryWithCStrings:args, __VA_ARGS__, nil]
 
 #define render(_template, _map) \
-	[bogart renderText:response renderTemplate:_template args:_map]
+	[bogart renderText:response renderTemplate:@_template args:_map]
 
 typedef void (^RedisHandler)(redisReply *);
 
@@ -76,7 +75,7 @@ typedef void (^RedisHandler)(redisReply *);
 
 - (void)startBogart:(uint16_t)port;
 - (BGRTRoute *)nextRoute:(const char *)pattern type:(enum evhttp_cmd_type)type;
-- (void)renderText:(BGRTResponse *)response renderTemplate:(char *)renderTemplate args:(BGRTTrie *)args;
+- (void)renderText:(BGRTResponse *)response renderTemplate:(NSString *)renderTemplate args:(NSDictionary *)args;
 - (void)redisCommand:(redisContext *)context handler:(RedisHandler)handler format:(const char *)format, ...;
 
 @end
@@ -91,4 +90,8 @@ typedef void (^RedisHandler)(redisReply *);
 	[bogart post:_pattern].handler = ^ void (BGRTRequest * request, BGRTResponse * response) 
 - (BGRTRoute *)post:(const char *)pattern;
 
+@end
+
+@interface NSDictionary (BGRT)
++ (NSDictionary *)bgrtDictionaryWithCStrings:(char *)strings, ...  NS_REQUIRES_NIL_TERMINATION;
 @end

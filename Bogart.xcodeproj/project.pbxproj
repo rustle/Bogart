@@ -11,12 +11,12 @@
 		9190654316E699A00039BC21 /* BGRTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654216E699A00039BC21 /* BGRTRequest.m */; };
 		9190654616E699ED0039BC21 /* BGRTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654516E699ED0039BC21 /* BGRTResponse.m */; };
 		9190654916E69A410039BC21 /* BGRTRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654816E69A410039BC21 /* BGRTRoute.m */; };
-		9190654C16E69A480039BC21 /* BGRTTrie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9190654B16E69A480039BC21 /* BGRTTrie.m */; };
 		91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E8078C16E5C56C00732D39 /* Foundation.framework */; };
 		91E8079016E5C56C00732D39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8078F16E5C56C00732D39 /* main.m */; };
 		91E8079416E5C56C00732D39 /* Bogart.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91E8079316E5C56C00732D39 /* Bogart.1 */; };
 		91E8079F16E5C5AE00732D39 /* Bogart.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E8079E16E5C5AE00732D39 /* Bogart.m */; };
 		91E807AD16E5C8A500732D39 /* libevent-2.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */; };
+		91F2CA2016E71C0B00FC9B07 /* libGRMustache6-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F2CA1D16E71C0B00FC9B07 /* libGRMustache6-MacOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,8 +40,6 @@
 		9190654516E699ED0039BC21 /* BGRTResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTResponse.m; sourceTree = "<group>"; };
 		9190654716E69A410039BC21 /* BGRTRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTRoute.h; sourceTree = "<group>"; };
 		9190654816E69A410039BC21 /* BGRTRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTRoute.m; sourceTree = "<group>"; };
-		9190654A16E69A480039BC21 /* BGRTTrie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRTTrie.h; sourceTree = "<group>"; };
-		9190654B16E69A480039BC21 /* BGRTTrie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRTTrie.m; sourceTree = "<group>"; };
 		91E8078916E5C56C00732D39 /* Bogart */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bogart; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E8078C16E5C56C00732D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91E8078F16E5C56C00732D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,6 +48,22 @@
 		91E8079D16E5C5AE00732D39 /* Bogart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Bogart.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		91E8079E16E5C5AE00732D39 /* Bogart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Bogart.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libevent-2.0.5.dylib"; path = "/usr/local/Cellar/libevent/2.0.20/lib/libevent-2.0.5.dylib"; sourceTree = "<absolute>"; };
+		91F2CA1016E71C0B00FC9B07 /* GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustache.h; sourceTree = "<group>"; };
+		91F2CA1116E71C0B00FC9B07 /* GRMustacheAvailabilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheAvailabilityMacros.h; sourceTree = "<group>"; };
+		91F2CA1216E71C0B00FC9B07 /* GRMustacheConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheConfiguration.h; sourceTree = "<group>"; };
+		91F2CA1316E71C0B00FC9B07 /* GRMustacheContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheContext.h; sourceTree = "<group>"; };
+		91F2CA1416E71C0B00FC9B07 /* GRMustacheError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheError.h; sourceTree = "<group>"; };
+		91F2CA1516E71C0B00FC9B07 /* GRMustacheFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheFilter.h; sourceTree = "<group>"; };
+		91F2CA1616E71C0B00FC9B07 /* GRMustacheLocalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheLocalizer.h; sourceTree = "<group>"; };
+		91F2CA1716E71C0B00FC9B07 /* GRMustacheRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheRendering.h; sourceTree = "<group>"; };
+		91F2CA1816E71C0B00FC9B07 /* GRMustacheTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheTag.h; sourceTree = "<group>"; };
+		91F2CA1916E71C0B00FC9B07 /* GRMustacheTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheTagDelegate.h; sourceTree = "<group>"; };
+		91F2CA1A16E71C0B00FC9B07 /* GRMustacheTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheTemplate.h; sourceTree = "<group>"; };
+		91F2CA1B16E71C0B00FC9B07 /* GRMustacheTemplateRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheTemplateRepository.h; sourceTree = "<group>"; };
+		91F2CA1C16E71C0B00FC9B07 /* GRMustacheVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheVersion.h; sourceTree = "<group>"; };
+		91F2CA1D16E71C0B00FC9B07 /* libGRMustache6-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGRMustache6-MacOS.a"; sourceTree = "<group>"; };
+		91F2CA1E16E71C0B00FC9B07 /* NSFormatter+GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFormatter+GRMustache.h"; sourceTree = "<group>"; };
+		91F2CA1F16E71C0B00FC9B07 /* NSValueTransformer+GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+GRMustache.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,7 @@
 				9190653D16E67E970039BC21 /* libhiredis.0.10.dylib in Frameworks */,
 				91E807AD16E5C8A500732D39 /* libevent-2.0.5.dylib in Frameworks */,
 				91E8078D16E5C56C00732D39 /* Foundation.framework in Frameworks */,
+				91F2CA2016E71C0B00FC9B07 /* libGRMustache6-MacOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +101,7 @@
 		91E8078B16E5C56C00732D39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91F2CA0F16E71C0B00FC9B07 /* GRMustache */,
 				9190653C16E67E970039BC21 /* libhiredis.0.10.dylib */,
 				91E807AC16E5C8A500732D39 /* libevent-2.0.5.dylib */,
 				91E8078C16E5C56C00732D39 /* Foundation.framework */,
@@ -105,8 +121,6 @@
 				9190654516E699ED0039BC21 /* BGRTResponse.m */,
 				9190654716E69A410039BC21 /* BGRTRoute.h */,
 				9190654816E69A410039BC21 /* BGRTRoute.m */,
-				9190654A16E69A480039BC21 /* BGRTTrie.h */,
-				9190654B16E69A480039BC21 /* BGRTTrie.m */,
 				91E8079316E5C56C00732D39 /* Bogart.1 */,
 				91E8079116E5C56C00732D39 /* Supporting Files */,
 			);
@@ -119,6 +133,29 @@
 				91E8079216E5C56C00732D39 /* Bogart-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91F2CA0F16E71C0B00FC9B07 /* GRMustache */ = {
+			isa = PBXGroup;
+			children = (
+				91F2CA1016E71C0B00FC9B07 /* GRMustache.h */,
+				91F2CA1116E71C0B00FC9B07 /* GRMustacheAvailabilityMacros.h */,
+				91F2CA1216E71C0B00FC9B07 /* GRMustacheConfiguration.h */,
+				91F2CA1316E71C0B00FC9B07 /* GRMustacheContext.h */,
+				91F2CA1416E71C0B00FC9B07 /* GRMustacheError.h */,
+				91F2CA1516E71C0B00FC9B07 /* GRMustacheFilter.h */,
+				91F2CA1616E71C0B00FC9B07 /* GRMustacheLocalizer.h */,
+				91F2CA1716E71C0B00FC9B07 /* GRMustacheRendering.h */,
+				91F2CA1816E71C0B00FC9B07 /* GRMustacheTag.h */,
+				91F2CA1916E71C0B00FC9B07 /* GRMustacheTagDelegate.h */,
+				91F2CA1A16E71C0B00FC9B07 /* GRMustacheTemplate.h */,
+				91F2CA1B16E71C0B00FC9B07 /* GRMustacheTemplateRepository.h */,
+				91F2CA1C16E71C0B00FC9B07 /* GRMustacheVersion.h */,
+				91F2CA1E16E71C0B00FC9B07 /* NSFormatter+GRMustache.h */,
+				91F2CA1F16E71C0B00FC9B07 /* NSValueTransformer+GRMustache.h */,
+				91F2CA1D16E71C0B00FC9B07 /* libGRMustache6-MacOS.a */,
+			);
+			path = GRMustache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +214,6 @@
 				9190654316E699A00039BC21 /* BGRTRequest.m in Sources */,
 				9190654616E699ED0039BC21 /* BGRTResponse.m in Sources */,
 				9190654916E69A410039BC21 /* BGRTRoute.m in Sources */,
-				9190654C16E69A480039BC21 /* BGRTTrie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +292,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/libevent/2.0.20/lib,
 					/usr/local/Cellar/hiredis/0.11.0/lib,
+					"\"$(SRCROOT)/GRMustache\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -274,6 +311,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/libevent/2.0.20/lib,
 					/usr/local/Cellar/hiredis/0.11.0/lib,
+					"\"$(SRCROOT)/GRMustache\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
