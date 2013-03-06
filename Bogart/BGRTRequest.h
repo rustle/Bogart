@@ -11,9 +11,10 @@ typedef const char * BGRTParameter;
 
 @property (nonatomic, readonly) const char *uri;
 @property (nonatomic, readonly) struct evhttp_request *ev_req;
+@property (nonatomic, readonly) NSData *postData;
 
 - (instancetype)initWithBGRTRequest:(struct evhttp_request *)ev_req;
-- (BGRTParameter)getParamWithKey:(const char *)key;
-- (BGRTParameter)getPostParamWithKey:(const char *)key;
+- (NSString *)getParamWithKey:(NSString *)key;
+- (NSString *)getPostParamWithKey:(NSString *)key;
 
 @end

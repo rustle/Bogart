@@ -31,10 +31,15 @@ int main(int argc, const char * argv[]) \
 	[response setBodyWithPattern:_pattern, ##__VA_ARGS__]
 
 #define param(_key) \
-	[request getParamWithKey:_key]
+	[[request getParamWithKey:@_key] UTF8String]
 
+// Assumes a query string style post data that is url encoded
+// ie foo=bar or foo=b%20ar
 #define postParam(_key) \
-	[request getPostParamWithKey:_key]
+	[[request getPostParamWithKey:@_key] UTF8String]
+
+#define postData \
+	[request postData]
 
 #define status(_status) \
 	response.code = _status

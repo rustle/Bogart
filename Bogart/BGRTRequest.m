@@ -10,6 +10,7 @@
 @property (nonatomic) const char *uri;
 @property (nonatomic) struct evkeyvalq *params;
 @property (nonatomic) struct evhttp_request *ev_req;
+@property (nonatomic) NSData *postData;
 @property (nonatomic) NSDictionary *postParameters;
 @end
 
@@ -32,21 +33,12 @@
 		if (_ev_req->input_buffer)
 		{
 			size_t length = evbuffer_get_length(_ev_req->input_buffer);
-			char * buffer = malloc(length + 1);
+			NSMutableData *data = [[NSMutableData alloc] initWithCapacity:length + 1];
+			[data setLength:length + 1];
+			char * buffer = [data mutableBytes];
 			evbuffer_copyout(_ev_req->input_buffer, buffer, length);
 			buffer[length] = 0;
-			NSString *postString = [[NSString alloc] initWithBytesNoCopy:buffer length:length encoding:NSUTF8StringEncoding freeWhenDone:YES];
-			NSArray *parameters = [postString componentsSeparatedByString:@"&"];
-			NSMutableDictionary *parametersDictionary = [NSMutableDictionary new];
-			for (NSString *parameter in parameters)
-			{
-				NSArray *splitParameter = [parameter componentsSeparatedByString:@"="];
-				if ([splitParameter count] == 2)
-				{
-					parametersDictionary[[splitParameter[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] = [splitParameter[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-				}
-			}
-			_postParameters = [parametersDictionary copy];
+			_postData = [data copy];
 		}
 	}
 	return self;
@@ -57,20 +49,54 @@
 	free(_params);
 }
 
-- (BGRTParameter)getParamWithKey:(const char *)key
+- (NSString *)getParamWithKey:(NSString *)key
 {
 	NSParameterAssert(self.params);
-	return evhttp_find_header(self.params, key);
+	const char * param = evhttp_find_header(self.params, [key UTF8String]);
+	if (param == NULL)
+	{
+		return nil;
+	}
+	return [NSString stringWithCString:param encoding:NSUTF8StringEncoding];
 }
 
-- (BGRTParameter)getPostParamWithKey:(const char *)key
+- (NSDictionary *)postParameters
 {
-	NSString *keyString = [NSString stringWithCString:key encoding:NSUTF8StringEncoding];
-	if (keyString)
+	if (_postParameters)
 	{
-		return [self.postParameters[keyString] UTF8String];
+		return _postParameters;
 	}
-	return NULL;
+	if (self.postData == nil)
+	{
+		return nil;
+	}
+	NSString *postString = [[NSString alloc] initWithData:self.postData encoding:NSUTF8StringEncoding];
+	NSArray *parameters = [postString componentsSeparatedByString:@"&"];
+	NSMutableDictionary *parametersDictionary = [NSMutableDictionary new];
+	for (NSString *parameter in parameters)
+	{
+		NSArray *splitParameter = [parameter componentsSeparatedByString:@"="];
+		if ([splitParameter count] == 2)
+		{
+			parametersDictionary[[splitParameter[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] = [splitParameter[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		}
+	}
+	_postParameters = [parametersDictionary copy];
+	return _postParameters;
+}
+
+- (NSString *)getPostParamWithKey:(NSString *)key
+{
+	if (key == NULL)
+	{
+		return NULL;
+	}
+	NSDictionary *postParameters = self.postParameters;
+	if (postParameters == nil)
+	{
+		return NULL;
+	}
+	return postParameters[key];
 }
 
 @end
