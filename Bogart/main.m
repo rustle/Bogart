@@ -46,17 +46,17 @@ Bogart {
 		BGRTParameter identifier =  param("id");
 		if (name && identifier)
 		{
-			[bogart redisCommand:_redisContext handler:^(redisReply *reply) {
-				if (reply)
+			bgrtRedisHandler {
+				if (bgrtRedisReply)
 				{
 					body("User created.\n");
 					status(201);
 				}
 				else
 				{
-					body("Error creating user: %s.\n", _redisContext->errstr);
+					body("Error creating user: %s.\n", bgrtRedisContextErrorString);
 				}
-			} format:"HSET User:%s %s %s", identifier, "name", name];
+			} bgrtRedisFormat("HSET User:%s %s %s", identifier, "name", name);
 		}
 		else
 		{
@@ -64,27 +64,27 @@ Bogart {
 		}
 	};
 	get("/show") {
-		BGRTParameter identifier =  param("id");
+		BGRTParameter identifier = param("id");
 		if (identifier)
 		{
-			[bogart redisCommand:_redisContext handler:^(redisReply *reply) {
-				if (reply && reply->type == REDIS_REPLY_STRING)
+			bgrtRedisHandler {
+				if (bgrtRedisReply && bgrtRedisReplyType == REDIS_REPLY_STRING)
 				{
-					NSCParameterAssert(reply->str);
-					render("<name>%{name}</name>\n", map("name", reply->str));
+					NSCParameterAssert(bgrtRedisReplyString);
+					render("<name>%{name}</name>\n", map("name", bgrtRedisReplyString));
 				}
 				else
 				{
-					if (reply->type == REDIS_REPLY_NIL)
+					if (bgrtRedisReplyType == REDIS_REPLY_NIL)
 					{
 						body("No user exists with identifier %s.\n", identifier);
 					}
 					else
 					{
-						body("Error fetching user with identifier %s: %s.\n", identifier, _redisContext->errstr);
+						body("Error fetching user with identifier %s: %s.\n", identifier, bgrtRedisContextErrorString);
 					}
 				}
-			} format:"HGET User:%s %s", identifier, "name"];
+			} bgrtRedisFormat("HGET User:%s %s", identifier, "name");
 		}
 	};
 	start(10000);

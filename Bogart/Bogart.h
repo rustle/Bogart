@@ -55,6 +55,18 @@ int main(int argc, const char * argv[]) \
 
 typedef void (^RedisHandler)(redisReply *);
 
+#define bgrtRedisHandler \
+	[bogart redisCommand:_redisContext handler:^(redisReply *reply)
+
+#define bgrtRedisFormat(args, ...) \
+	format:args, __VA_ARGS__];
+
+#define bgrtRedisReply reply
+#define bgrtRedisReplyType reply->type
+#define bgrtRedisReplyString reply->str
+#define bgrtRedisContextError _redisContext->err
+#define bgrtRedisContextErrorString _redisContext->errstr
+
 @interface BogartServer : NSObject
 
 - (void)startBogart:(uint16_t)port;
