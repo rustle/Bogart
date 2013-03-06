@@ -7,6 +7,8 @@ Expects libevent installed by homebrew
 
 `brew install libevent`
 
-and hiredis
+and hiredis / redis
 
-`brew install hiredis`
+Install redis: `brew install redis`
+Start redis: `redis-server`
+Install hiredis: `brew install hiredis`

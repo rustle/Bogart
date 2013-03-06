@@ -41,7 +41,8 @@ int main(int argc, const char * argv[]) \
 
 #define useRedis \
 	redisContext *_redisContext; \
-	_redisContext = redisConnect("127.0.0.1", 6379)
+	_redisContext = redisConnect("127.0.0.1", 6379); \
+	if (_redisContext && _redisContext->err != REDIS_OK) { NSLog(@"Redis Error: %s", _redisContext->errstr); }
 
 #define cleanupRedis \
 	redisFree(_redisContext)
